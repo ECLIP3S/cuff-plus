@@ -37,15 +37,15 @@ AddEventHandler("Handsup", function()
 				ClearPedSecondaryTask(lPed)
 				SetEnableHandcuffs(lPed, false)
 				SetCurrentPedWeapon(lPed, GetHashKey("WEAPON_UNARMED"), true)
-				TriggerEvent("chatMessage", "", {255, 0, 0}, "Your have put your hands down.")
+				TriggerEvent("chatMessage", "", {255, 0, 0}, "Your put your hands down")
 			else
 				TaskPlayAnim(lPed, "random@mugging3", "handsup_standing_base", 8.0, -8, -1, 49, 0, 0, 0, 0)
 				SetEnableHandcuffs(lPed, true)
 				SetCurrentPedWeapon(lPed, GetHashKey("WEAPON_UNARMED"), true)
-				TriggerEvent("chatMessage", "", {255, 0, 0}, "Your hands are up.")
+				TriggerEvent("chatMessage", "", {255, 0, 0}, "You put your hands up")
 			end
 		else
-			TriggerEvent("chatMessage", "You are handcuffed..")
+			TriggerEvent("chatMessage", "", {255, 0, 0}, "You can't raise your hands when your handcuffed")
 		end
 	end
 end)
