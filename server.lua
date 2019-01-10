@@ -36,7 +36,3 @@ function tablelength(T)
   for _ in pairs(T) do count = count + 1 end
   return count
 end
-
-TriggerEvent('es:addCommand', 'huk', function(source, args, user)
-	TriggerClientEvent('KneelHU', source, {})
-end, {help = "Get down on your knees and put your hands on your head"})
