@@ -1,5 +1,3 @@
---Handcuff Script
-
 local handcuff = false
 
 RegisterNetEvent("Handcuff")
@@ -24,8 +22,6 @@ AddEventHandler("Handcuff", function()
 		end
 	end
 end)
-
---Handsup Script
 
 RegisterNetEvent("Handsup")
 AddEventHandler("Handsup", function()
@@ -53,7 +49,6 @@ AddEventHandler("Handsup", function()
 		end
 	end
 end)
-
 
 Citizen.CreateThread(function()
 	while true do
@@ -86,7 +81,6 @@ Citizen.CreateThread(function()
 	end
 end)
 
---HUK Script
 
 function loadAnimDict( dict )
     while ( not HasAnimDictLoaded( dict ) ) do

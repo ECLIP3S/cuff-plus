@@ -1,3 +1,7 @@
+print("=======================")
+print("Cuff+ Script by ECLIP3S Loaded")
+print("=======================")
+
 AddEventHandler("chatMessage", function(source, name, message)
 	cm = stringsplit(message, " ")
 
@@ -33,7 +37,6 @@ function tablelength(T)
   return count
 end
 
-
 TriggerEvent('es:addCommand', 'huk', function(source, args, user)
 	TriggerClientEvent('KneelHU', source, {})
-end)
+end, {help = "Get down on your knees and put your hands on your head"})
