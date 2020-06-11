@@ -1,5 +1,6 @@
 local handcuff = false
 
+--Cuff Function
 RegisterNetEvent("Handcuff")
 AddEventHandler("Handcuff", function()
 	local lPed = GetPlayerPed(-1)
@@ -23,6 +24,8 @@ AddEventHandler("Handcuff", function()
 	end
 end)
 
+
+--Hands Up Function
 RegisterNetEvent("Handsup")
 AddEventHandler("Handsup", function()
 	local lPed = GetPlayerPed(-1)
@@ -37,12 +40,12 @@ AddEventHandler("Handsup", function()
 				ClearPedSecondaryTask(lPed)
 				SetEnableHandcuffs(lPed, false)
 				SetCurrentPedWeapon(lPed, GetHashKey("WEAPON_UNARMED"), true)
-				TriggerEvent("chatMessage", "", {255, 0, 0}, "Your put your hands down")
+				TriggerEvent("chatMessage", "", {255, 0, 0}, "You have put your hands down")
 			else
 				TaskPlayAnim(lPed, "random@mugging3", "handsup_standing_base", 8.0, -8, -1, 49, 0, 0, 0, 0)
 				SetEnableHandcuffs(lPed, true)
 				SetCurrentPedWeapon(lPed, GetHashKey("WEAPON_UNARMED"), true)
-				TriggerEvent("chatMessage", "", {255, 0, 0}, "You put your hands up")
+				TriggerEvent("chatMessage", "", {255, 0, 0}, "You have put your hands up")
 			end
 		else
 			TriggerEvent("chatMessage", "", {255, 0, 0}, "You can't raise your hands when your handcuffed")
@@ -88,3 +91,38 @@ function loadAnimDict( dict )
         Citizen.Wait( 5 )
     end
 end 
+
+--Hands Up Knees Function
+RegisterNetEvent("Handsupknees")
+AddEventHandler("Handsupknees", function()
+    local player = GetPlayerPed( -1 )
+	if ( DoesEntityExist( player ) and not IsEntityDead( player )) then 
+        loadAnimDict( "random@arrests" )
+		loadAnimDict( "random@arrests@busted" )
+		if ( IsEntityPlayingAnim( player, "random@arrests@busted", "idle_a", 3 ) ) then 
+			TaskPlayAnim( player, "random@arrests@busted", "exit", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
+			Wait (3000)
+            TaskPlayAnim( player, "random@arrests", "kneeling_arrest_get_up", 8.0, 1.0, -1, 128, 0, 0, 0, 0 )
+        else
+            TaskPlayAnim( player, "random@arrests", "idle_2_hands_up", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
+			Wait (4000)
+            TaskPlayAnim( player, "random@arrests", "kneeling_arrest_idle", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
+			Wait (500)
+			TaskPlayAnim( player, "random@arrests@busted", "enter", 8.0, 1.0, -1, 2, 0, 0, 0, 0 )
+			Wait (1000)
+			TaskPlayAnim( player, "random@arrests@busted", "idle_a", 8.0, 1.0, -1, 9, 0, 0, 0, 0 )
+        end     
+    end
+end )
+
+Citizen.CreateThread(function()
+	while true do
+		Citizen.Wait(0)
+		if IsEntityPlayingAnim(GetPlayerPed(PlayerId()), "random@arrests@busted", "idle_a", 3) then
+			DisableControlAction(1, 140, true)
+			DisableControlAction(1, 141, true)
+			DisableControlAction(1, 142, true)
+			DisableControlAction(0,21,true)
+		end
+	end
+end)
