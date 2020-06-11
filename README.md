@@ -1,5 +1,6 @@
 # cuff-plus-master
 Cuff+ by ECLIP3S
+https://forum.cfx.re/t/release-cuff-script-cuff-script-with-animations/228394
 
 Installation:
 Rename 'cuff-plus-master' to 'cuff-plus'
